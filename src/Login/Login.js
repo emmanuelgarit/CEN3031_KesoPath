@@ -11,7 +11,8 @@ import Checkbox from '@mui/material/Checkbox';
 import Button from "@mui/material/Button"
 import { useNavigate } from "react-router-dom";
 import Link from '@mui/material/Link';
-import { Formik, Field, Form} from 'formik';
+import { Formik, Field, Form, ErrorMessage} from 'formik';
+import * as Yup from 'yup';
 
 
 
@@ -26,6 +27,10 @@ export default function Login() {
         remember: false
     }
     let navigate = useNavigate();
+    const validationSchema = Yup.object().shape({
+        username: Yup.string().email('please enter valid email').required('Required'),
+        password: Yup.string().required('Required')
+    })
     const onSubmit=(values, props) => {
         console.log(values)
     }
@@ -33,11 +38,15 @@ export default function Login() {
         <Grid>
             <Paper elevation={10} style={paperStyle}>
                 <Typography align="center" variant="h4" sx={{ padding: 2 }}>Sign in</Typography>
-                <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
                     {(props) => (
                         <Form>
-                            <Field as={TextField} label="Username" name="username" placeholder="Enter Username" variant="standard" fullWidth required/>
-                            <Field as={TextField} label="Password" name="password" placeholder="Enter Password" variant="standard" type="password" fullWidth required/>
+                            <Field as={TextField} label="Username" name="username" placeholder="Enter Username" variant="standard" fullWidth required
+                            helperText={<ErrorMessage name="username" />}
+                            />
+                            <Field as={TextField} label="Password" name="password" placeholder="Enter Password" variant="standard" type="password" fullWidth required
+                            helperText={<ErrorMessage name="password" />}
+                            />
                             <Field as={FormControlLabel} name="remember" control={<Checkbox/>} label="Remember me" />
                             <Button type="submit" color="primary" variant="contained" fullWidth>Sign in</Button>
                         </Form>
