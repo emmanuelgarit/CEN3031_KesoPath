@@ -17,8 +17,7 @@ export default function Navbar() {
             onClick={() => {
               navigate("/home");
             }}
-            variant="text"
-            color="inherit"
+            variant="contained"
           >
             Keso Path
           </Button>
