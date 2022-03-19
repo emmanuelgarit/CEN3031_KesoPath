@@ -6,6 +6,7 @@ import LandingPage from "../LandingPage"
 import Navbar from "../Navbar"
 import Login from "../Login"
 import Quiz from "../Quiz"
+import Register from "../Register"
 
 const AppContainer = styled(Box)(() => ({
   height: "100vh",
@@ -21,6 +22,7 @@ function App() {
         <Route path="/home" element={<LandingPage />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/quiz" element={<Quiz />}></Route>
+        <Route path="/register" element={<Register />}></Route>
       </Routes>
     </AppContainer>
   );
