@@ -38,8 +38,6 @@ export default function Login() {
             props.setSubmitting(false)
             navigate("/home")
         }, 1500)
-        console.log(values)
-        console.log(props)
     }
     return (
         <Grid>
