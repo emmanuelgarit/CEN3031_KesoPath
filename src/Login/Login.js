@@ -32,7 +32,14 @@ export default function Login() {
         password: Yup.string().required('Required')
     })
     const onSubmit=(values, props) => {
+        // TODO: make backend call, invalidate user, if credential is right, go back to home page, else show error message
+        setTimeout(() => {
+            props.resetForm()
+            props.setSubmitting(false)
+            navigate("/home")
+        }, 1500)
         console.log(values)
+        console.log(props)
     }
     return (
         <Grid>
@@ -48,7 +55,7 @@ export default function Login() {
                             helperText={<ErrorMessage name="password" />}
                             />
                             <Field as={FormControlLabel} name="remember" control={<Checkbox/>} label="Remember me" />
-                            <Button type="submit" color="primary" variant="contained" fullWidth>Sign in</Button>
+                            <Button type="submit" color="primary" variant="contained" disabled={props.isSubmitting} fullWidth>{props.isSubmitting?"Loading...":"Sign in"}</Button>
                         </Form>
                     )}
                 </Formik>
