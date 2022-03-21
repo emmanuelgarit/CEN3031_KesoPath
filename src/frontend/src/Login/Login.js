@@ -2,15 +2,11 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Avatar from '@mui/material/Avatar';
-import { green, blue } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from "@mui/material/Button"
 import { useNavigate } from "react-router-dom";
-import Link from '@mui/material/Link';
 import { Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 
@@ -20,7 +16,6 @@ import * as Yup from 'yup';
 
 export default function Login() {
     const paperStyle={padding:20, height:'70vh', width:280, margin:"20px auto"};
-    const avatarStyle={backgroundColor:blue[500]};
     const initialValues = {
         username: '',
         password: '',
@@ -67,10 +62,3 @@ export default function Login() {
         </Grid>
     );
 }
-
-/*
-<TextField label="Username" placeholder="Enter Username" variant="standard" fullWidth required/>
-                <TextField label="Password" placeholder="Enter Password" variant="standard" type="password" fullWidth required/>
-                <FormControlLabel control={<Checkbox/>} label="Remember me" />
-                <Button type="submit" color="primary" variant="contained" fullWidth>Sign in</Button> 
-*/
