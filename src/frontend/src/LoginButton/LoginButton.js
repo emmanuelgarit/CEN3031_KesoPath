@@ -50,7 +50,7 @@ export default function LoginButton(props) {
 
   let navigate = useNavigate();
   let user = JSON.parse(localStorage.getItem("user"));
-  console.log("userData login button: ", user);
+  //console.log("userData login button: ", user);
 
   if (user && userData) {
     return (

@@ -44,7 +44,6 @@ export default function Login() {
     axios
       .post("http://localhost:4000/api/signin", login)
       .then((res) => {
-        console.log(res.data);
         setUserData({
           fullName: res.data.user.fullName,
           email: res.data.user.email,
