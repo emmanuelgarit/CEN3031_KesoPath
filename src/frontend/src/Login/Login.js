@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import UserContext from "../UserContext";
 
 
 
@@ -18,6 +19,7 @@ import axios from 'axios';
 export default function Login() {
     // maybe conditional rendering makes more sense than a blank typography but this works for now
     const  [submitErrorMessage, setSubmitErrorMessage] = React.useState('');
+    const { userData, setUserData } = React.useContext(UserContext);
 
     const paperStyle={padding:20, height:'70vh', width:280, margin:"20px auto"};
     const initialValues = {
@@ -50,6 +52,10 @@ export default function Login() {
         axios.post('http://localhost:4000/api/signin', login)
         .then(res => {
             console.log(res.data);
+            setUserData({
+                fullName: res.data.user.fullName,
+                email: res.data.user.email,
+            })
             setTimeout(() => {
                 props.resetForm()
                 props.setSubmitting(false)

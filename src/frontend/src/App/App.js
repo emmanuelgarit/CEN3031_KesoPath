@@ -7,6 +7,7 @@ import Navbar from "../Navbar"
 import Login from "../Login"
 import Quiz from "../Quiz"
 import Register from "../Register"
+import { UserProvider } from "../UserContext";
 
 const AppContainer = styled(Box)(() => ({
   height: "100vh",
@@ -14,17 +15,22 @@ const AppContainer = styled(Box)(() => ({
 }));
 
 function App() {
+  const [userData, setUserData] = React.useState({});
+  const userValue = { userData, setUserData };
+
   return (
-    <AppContainer id="app-container">
-      <Navbar />
-      <Routes>
-        <Route exact path="/" element={<LandingPage />}></Route>
-        <Route path="/home" element={<LandingPage />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/quiz" element={<Quiz />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-      </Routes>
-    </AppContainer>
+    <UserProvider value={userValue}>
+      <AppContainer id="app-container">
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<LandingPage />}></Route>
+          <Route path="/home" element={<LandingPage />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/quiz" element={<Quiz />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+        </Routes>
+        </AppContainer>
+    </UserProvider>
   );
 }
 
