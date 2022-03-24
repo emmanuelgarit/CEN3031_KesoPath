@@ -10,6 +10,8 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 export default function Register() {
+    const  [submitErrorMessage, setSubmitErrorMessage] = React.useState('');
+
     const paperStyle={padding:20, height:'70vh', width:280, margin:"20px auto"};
     let navigate = useNavigate();
     const initialValues = {
@@ -18,6 +20,7 @@ export default function Register() {
         password: '',
     }
     const onSubmit = (values, props) => {
+        setSubmitErrorMessage('');
         const registered = {
             fullName: values.fullName,
             email: values.username,
@@ -26,16 +29,19 @@ export default function Register() {
         axios.post('http://localhost:4000/api/signup', registered)
         .then(res => {
             console.log(res.data);
+            setTimeout(() => {
+                props.resetForm()
+                props.setSubmitting(false)
+                navigate("/home")
+            }, 1500)
         })
         .catch(err => {
-            console.log(err)
-        })
-
-        setTimeout(() => {
-            props.resetForm()
+            console.log(err);
+            if (err.response.status === 400) {
+                setSubmitErrorMessage('Account already exists');
+            }
             props.setSubmitting(false)
-            navigate("/home")
-        }, 1500)
+        })
     }
     const validationSchema = Yup.object().shape({
         fullName: Yup.string().required('please enter your full name'),
@@ -58,7 +64,9 @@ export default function Register() {
                         <Field as={TextField} label="Password" name="password" placeholder="Enter Password" variant="standard" type="password" fullWidth required
                         helperText={<ErrorMessage name="password" />}
                         />
-                        <Button type="submit" color="primary" variant="contained" disabled={props.isSubmitting} sx={{ marginTop: 2 }} fullWidth>{props.isSubmitting?"Registering...":"Sign up"}</Button>
+                        <Button type="submit" color="primary" variant="contained" disabled={props.isSubmitting} sx={{ marginTop: 2 }} fullWidth>{props.isSubmitting?"Registering...":"Sign up"}
+                        </Button>
+                        <Typography align="center" variant="subtitle2" sx={{ padding: 2 }}>{submitErrorMessage}</Typography>
                     </Form>
                 )}
             </Formik>
