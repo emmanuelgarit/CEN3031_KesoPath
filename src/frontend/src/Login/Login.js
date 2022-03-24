@@ -9,12 +9,16 @@ import Button from "@mui/material/Button"
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 
 
 
 
 export default function Login() {
+    // maybe conditional rendering makes more sense than a blank typography but this works for now
+    const  [submitErrorMessage, setSubmitErrorMessage] = React.useState('');
+
     const paperStyle={padding:20, height:'70vh', width:280, margin:"20px auto"};
     const initialValues = {
         username: '',
@@ -27,12 +31,41 @@ export default function Login() {
         password: Yup.string().required('Required')
     })
     const onSubmit=(values, props) => {
-        // TODO: make backend call, invalidate user, if credential is right, go back to home page, else show error message
-        setTimeout(() => {
-            props.resetForm()
+        /*
+        TODO: (in .then)
+        Either
+        1a. Save login info to local storage (redux? i've never used this)
+        or
+        1b. Save login info to a context provider (global variable, essentially local storage)
+        then (in Navbar)
+        2a. Use jwt token to authenticate user and display info on navbar
+        or
+        2b. Use context provider to check if user is logged in and display info on the navbar
+        */
+        setSubmitErrorMessage('');
+        const login = {
+            email: values.username,
+            password: values.password,
+        }
+        axios.post('http://localhost:4000/api/signin', login)
+        .then(res => {
+            console.log(res.data);
+            setTimeout(() => {
+                props.resetForm()
+                props.setSubmitting(false)
+                navigate("/home")
+            }, 1500)
+        })
+        .catch(err => {
+            console.log(err);
+            if (err.response.status === 400) {
+                setSubmitErrorMessage('Incorrect Password');
+            }
+            else if (err.response.status === 404) {
+                setSubmitErrorMessage('Account does not exist. Please register');
+            }
             props.setSubmitting(false)
-            navigate("/home")
-        }, 1500)
+        })
     }
     return (
         <Grid>
@@ -58,6 +91,7 @@ export default function Login() {
                         navigate("/register");
                     }
                 } fullWidth>Register</Button>
+                <Typography align="center" variant="subtitle2" sx={{ padding: 2 }}>{submitErrorMessage}</Typography>
             </Paper>
         </Grid>
     );

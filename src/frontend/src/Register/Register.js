@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 export default function Register() {
+    // maybe conditional rendering makes more sense than a blank typography but this works for now
     const  [submitErrorMessage, setSubmitErrorMessage] = React.useState('');
 
     const paperStyle={padding:20, height:'70vh', width:280, margin:"20px auto"};
