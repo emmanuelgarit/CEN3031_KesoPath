@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import UserContext from "../UserContext";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -11,11 +10,11 @@ import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import MenuList from "@mui/material/MenuList";
+import UserContext from "../UserContext";
 
 export default function LoginButton(props) {
   const [buttonText, setButtonText] = React.useState("Login");
   const { userData, setUserData } = React.useContext(UserContext);
-  const [isDisabled, setDisabled] = React.useState(false);
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -50,10 +49,10 @@ export default function LoginButton(props) {
   //console.log("userData: ", userData);
 
   let navigate = useNavigate();
+  let user = JSON.parse(localStorage.getItem("user"));
+  console.log("userData login button: ", user);
 
-  // TODO: doesn't save on refresh probably gotta use jwt for local storage and maybe redo this
-  // also I dont really like how this looks needs more styling i guess
-  if (Object.keys(userData).length > 0) {
+  if (user && userData) {
     return (
       <div>
         <Button
@@ -95,8 +94,8 @@ export default function LoginButton(props) {
                     <MenuItem onClick={handleClose}>{userData.email}</MenuItem>
                     <MenuItem
                       onClick={() => {
-                        // handle close doesn't work here with resetting the userdata
-                        setUserData({});
+                        setUserData(null);
+                        localStorage.removeItem("user");
                       }}
                     >
                       Logout
