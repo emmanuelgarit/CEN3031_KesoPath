@@ -63,7 +63,8 @@ export default function LoginButton(props) {
           aria-haspopup="true"
           onClick={handleToggle}
           startIcon={<AccountCircleIcon />}
-          variant="contained"
+          variant="text"
+          color="inherit"
         >
           {userData.fullName}
         </Button>
@@ -111,8 +112,8 @@ export default function LoginButton(props) {
   }
   return (
     <Button
-      variant="contained"
-      startIcon={<AccountCircleIcon />}
+      variant="text"
+      color="inherit"
       onClick={() => {
         navigate("/login");
       }}
