@@ -95,7 +95,7 @@ export default function LoginButton(props) {
                     <MenuItem onClick={handleClose}>{userData.email}</MenuItem>
                     <MenuItem
                       onClick={() => {
-                        setUserData(null);
+                        setUserData({});
                         localStorage.removeItem("user");
                       }}
                     >
