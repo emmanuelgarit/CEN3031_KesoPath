@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 
 import { styled } from "@mui/material/styles";
+
+import UserContext from "../UserContext";
 // button needs like onClick that will navigate to quiz page
 // need folder for the quiz page and a quiz page
 // set up a route for the quiz page
@@ -24,11 +26,8 @@ const textContainerStyle = {
 
 export default function LandingPage(props) {
   let navigate = useNavigate();
-  //#B1ED01 neon yellow/green
-  //better neon #A1D700
-  // bright orange #FFA500
-  // E89600
-  //extra comment
+
+  const { userData, setUserData } = React.useContext(UserContext);
 
   //basics for the landing page. Includes the title, a description, and a button that takes you to the quiz.
   return (
@@ -59,7 +58,12 @@ export default function LandingPage(props) {
             align="center"
             color="secondary"
             onClick={() => {
-              navigate("/quiz");
+              console.log(userData);
+              if (Object.keys(userData).length > 0) {
+                navigate("/quiz");
+              } else {
+                navigate("/login");
+              }
             }}
           >
             Take Quiz
@@ -86,8 +90,8 @@ export default function LandingPage(props) {
           <Typography sx={{ fontSize: 18 }}>
             For students who seek to gain a better understanding of what careers
             align with their interests and personality. The Kesopath is an
-            interactive quiz that gives users different situations and a set of
-            possible responses that will determine which career they best align
+            interactive quiz that gives you different situations and a set of
+            possible responses that will determine which career you best align
             with.
           </Typography>
         </Box>
@@ -112,10 +116,10 @@ export default function LandingPage(props) {
             Results
           </Typography>
           <Typography sx={{ fontSize: 18 }}>
-            The results of the quiz give the user helpful information about
-            their interests and career paths that can be downloaded. This
-            information includes resources to learn more about your career path
-            and where to take the next step.
+            The results of the quiz give you helpful information about your
+            interests and career paths that can be downloaded. This information
+            includes resources to learn more about your career path and where to
+            take the next step.
           </Typography>
         </Box>
       </Box>
