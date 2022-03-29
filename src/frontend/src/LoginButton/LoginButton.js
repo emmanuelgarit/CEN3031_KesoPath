@@ -15,6 +15,7 @@ import UserContext from "../UserContext";
 export default function LoginButton(props) {
   const [buttonText, setButtonText] = React.useState("Login");
   const { userData, setUserData } = React.useContext(UserContext);
+  const [user, setUser] = React.useState(null);
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -49,10 +50,11 @@ export default function LoginButton(props) {
   //console.log("userData: ", userData);
 
   let navigate = useNavigate();
-  let user = JSON.parse(localStorage.getItem("user"));
-  //console.log("userData login button: ", user);
 
-  if (user && userData) {
+  if (localStorage.getItem("user") !== null) {
+    const userObject = JSON.parse(localStorage.getItem("user"));
+    const fullName = userObject.fullName;
+    const email = userObject.email;
     return (
       <div>
         <Button
@@ -66,7 +68,7 @@ export default function LoginButton(props) {
           variant="text"
           color="inherit"
         >
-          {userData.fullName}
+          {fullName}
         </Button>
         <Popper
           open={open}
@@ -92,11 +94,12 @@ export default function LoginButton(props) {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>{userData.email}</MenuItem>
+                    <MenuItem onClick={handleClose}>{email}</MenuItem>
                     <MenuItem
                       onClick={() => {
                         setUserData({});
                         localStorage.removeItem("user");
+                        console.log(localStorage.getItem("user"));
                       }}
                     >
                       Logout
