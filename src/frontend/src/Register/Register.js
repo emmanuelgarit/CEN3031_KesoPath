@@ -24,14 +24,14 @@ export default function Register() {
   let navigate = useNavigate();
   const initialValues = {
     fullName: "",
-    username: "",
+    email: "",
     password: "",
   };
   const onSubmit = (values, props) => {
     setSubmitErrorMessage("");
     const registered = {
       fullName: values.fullName,
-      email: values.username,
+      email: values.email,
       password: values.password,
     };
     axios
@@ -58,9 +58,7 @@ export default function Register() {
   };
   const validationSchema = Yup.object().shape({
     fullName: Yup.string().required("please enter your full name"),
-    username: Yup.string()
-      .email("please enter valid email")
-      .required("Required"),
+    email: Yup.string().email("please enter valid email").required("Required"),
     password: Yup.string().required("Required"),
   });
   return (
@@ -88,13 +86,13 @@ export default function Register() {
               />
               <Field
                 as={TextField}
-                label="Username"
-                name="username"
+                label="Email"
+                name="email"
                 placeholder="Enter a valid email"
                 variant="standard"
                 fullWidth
                 required
-                helperText={<ErrorMessage name="username" />}
+                helperText={<ErrorMessage name="email" />}
               />
               <Field
                 as={TextField}

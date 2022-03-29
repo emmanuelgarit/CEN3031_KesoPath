@@ -58,8 +58,8 @@ export default function LandingPage(props) {
             align="center"
             color="secondary"
             onClick={() => {
-              console.log(userData);
-              if (Object.keys(userData).length > 0) {
+              console.log(localStorage.getItem("user"));
+              if (localStorage.getItem("user")) {
                 navigate("/quiz");
               } else {
                 navigate("/login");

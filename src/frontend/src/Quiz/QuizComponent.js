@@ -9,12 +9,15 @@ import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
-import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import RadioButtonCheckedOutlinedIcon from "@mui/icons-material/RadioButtonCheckedOutlined";
 import RadioButtonUncheckedOutlinedIcon from "@mui/icons-material/RadioButtonUncheckedOutlined";
 import Checkbox from "@mui/material/Checkbox";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import questions from "./QuizData";
+import axios from "axios";
+
+import UserContext from "../UserContext";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -59,6 +62,24 @@ export default function QuizComponent() {
     // now stateVariable = "hello"
   }
 
+  const { userData, setUserData } = React.useContext(UserContext);
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  //state component for the varoious possible answers
+  const [isOneChecked, setIsOneChecked] = React.useState(false);
+  const [boxOne, setBoxOne] = React.useState(false);
+  const [boxTwo, setBoxTwo] = React.useState(false);
+  const [boxThree, setBoxThree] = React.useState(false);
+  const [boxFour, setBoxFour] = React.useState(false);
+  const [boxFive, setBoxFive] = React.useState(false);
+  const [checkedNum, setCheckedNum] = React.useState(0);
+
+  const checkBoxStyle = {
+    marginRight: "5%",
+    marginLeft: "5%",
+  };
+
   var images = { 0: image, 1: image2, 2: image3 };
   var Questions = {
     0: "how are you?",
@@ -69,21 +90,6 @@ export default function QuizComponent() {
   var Bs = { 0: "not well", 1: "not ok", 2: "no" };
   var Cs = { 0: "good", 1: "decent", 2: "possibly" };
   var Ds = { 0: "not good", 1: "not decent", 2: "perhaps" };
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  //state component for the varoious possible answers
-  const [isOneChecked, setIsOneChecked] = React.useState({});
-  const [boxOne, setBoxOne] = React.useState(false);
-  const [boxTwo, setBoxTwo] = React.useState(false);
-  const [boxThree, setBoxThree] = React.useState(false);
-  const [boxFour, setBoxFour] = React.useState(false);
-  const [boxFive, setBoxFive] = React.useState(false);
-
-  const checkBoxStyle = {
-    marginRight: "5%",
-    marginLeft: "5%",
-  };
 
   //function for the list of buttons that contain the answers.
 
@@ -102,6 +108,8 @@ export default function QuizComponent() {
             setBoxThree(false);
             setBoxFour(false);
             setBoxFive(false);
+            setIsOneChecked(true);
+            setCheckedNum(1);
           }}
         />
         <Checkbox
@@ -116,6 +124,8 @@ export default function QuizComponent() {
             setBoxThree(false);
             setBoxFour(false);
             setBoxFive(false);
+            setIsOneChecked(true);
+            setCheckedNum(2);
           }}
         />
         <Checkbox
@@ -130,6 +140,8 @@ export default function QuizComponent() {
             setBoxThree(true);
             setBoxFour(false);
             setBoxFive(false);
+            setIsOneChecked(true);
+            setCheckedNum(3);
           }}
         />
         <Checkbox
@@ -144,6 +156,8 @@ export default function QuizComponent() {
             setBoxThree(false);
             setBoxFour(true);
             setBoxFive(false);
+            setIsOneChecked(true);
+            setCheckedNum(4);
           }}
         />
         <Checkbox
@@ -158,6 +172,8 @@ export default function QuizComponent() {
             setBoxThree(false);
             setBoxFour(false);
             setBoxFive(true);
+            setIsOneChecked(true);
+            setCheckedNum(5);
           }}
         />
       </Container>
@@ -179,7 +195,7 @@ export default function QuizComponent() {
         {/* .map conditonally render the image etc. */}
         <Container align="center">
           <img
-            src={images[currentSlide]}
+            src={questions[currentSlide].picture}
             alt="Nature Image"
             height="500"
             width="889"
@@ -191,19 +207,19 @@ export default function QuizComponent() {
           align="center"
           sx={{ paddingTop: "2%", paddingBottom: "5%" }}
         >
-          Question: How are you
+          {questions[currentSlide].Question}
         </Typography>
 
         <Container
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            width: "64%",
+            width: "68%",
           }}
+          s
         >
-          <Typography>Least Likely</Typography>
-
-          <Typography>Most Likely</Typography>
+          <Typography>Strongly Disagree </Typography>
+          <Typography sx={{ marginRight: "2%" }}>Strongly Agree</Typography>
         </Container>
 
         <AnswerList />
@@ -229,6 +245,7 @@ export default function QuizComponent() {
                 setCurrentSlide(currentSlide - 1);
               }
             }}
+            disabled={currentSlide == 0 ? true : false}
           >
             Back
           </Button>
@@ -240,11 +257,23 @@ export default function QuizComponent() {
             size="large"
             onClick={() => {
               setCurrentSlide(currentSlide + 1);
-              if (currentSlide == 2) {
+              if (currentSlide == 9) {
                 navigate("/postquiz");
               }
 
               //TODO: save the selection of the current quiz question to the database
+              // api call to save checkedNum to the database
+              console.log("currentSlide: ", currentSlide);
+              const answer = {
+                email: userData.email,
+                currentSlide,
+                answer: checkedNum,
+              };
+              axios
+                .post("http://localhost:4000/api/sendanswer", answer)
+                .then((res) => {
+                  console.log(res);
+                });
 
               // update variable here
               setBoxOne(false);
@@ -252,7 +281,9 @@ export default function QuizComponent() {
               setBoxThree(false);
               setBoxFour(false);
               setBoxFive(false);
+              setIsOneChecked(false);
             }}
+            disabled={isOneChecked ? false : true}
           >
             Next
           </Button>

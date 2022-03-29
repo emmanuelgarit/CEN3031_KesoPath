@@ -24,21 +24,19 @@ export default function Login() {
     margin: "20px auto",
   };
   const initialValues = {
-    username: "",
+    email: "",
     password: "",
     remember: false,
   };
   let navigate = useNavigate();
   const validationSchema = Yup.object().shape({
-    username: Yup.string()
-      .email("please enter valid email")
-      .required("Required"),
+    email: Yup.string().email("please enter valid email").required("Required"),
     password: Yup.string().required("Required"),
   });
   const onSubmit = (values, props) => {
     setSubmitErrorMessage("");
     const login = {
-      email: values.username,
+      email: values.email,
       password: values.password,
     };
     axios
@@ -80,13 +78,13 @@ export default function Login() {
             <Form>
               <Field
                 as={TextField}
-                label="Username"
-                name="username"
-                placeholder="Enter Username"
+                label="Email"
+                name="email"
+                placeholder="Enter valid email"
                 variant="standard"
                 fullWidth
                 required
-                helperText={<ErrorMessage name="username" />}
+                helperText={<ErrorMessage name="email" />}
               />
               <Field
                 as={TextField}
