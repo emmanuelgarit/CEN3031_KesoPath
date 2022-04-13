@@ -1,13 +1,29 @@
 import React from "react";
+import { useEffect, useState, useRef } from "react";
+
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+
+import UserContext from "../UserContext";
+
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Typography from "@mui/material/Typography";
 import { Button, Box } from "@mui/material";
-import Container from "@mui/material/Container";
-import { useNavigate } from "react-router-dom";
-import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import axios from "axios";
-import UserContext from "../UserContext";
-import { useEffect, useState, useRef } from "react";
+
+let careers = [
+  "Social Studies",
+  "Arts",
+  "Science",
+  "Math",
+  "Trades",
+  "Technology",
+];
 
 export default function PostQuiz(props) {
   let navigate = useNavigate();
@@ -110,11 +126,32 @@ export default function PostQuiz(props) {
     }
   }
 
+  const [expanded, setExpanded] = React.useState("panel1");
+
+  const handleChange = (panel) => (_, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
+
   return (
     <ContentContainer>
       <Typography align="center" variant="h1">
         Post Quiz Results
       </Typography>
+      <div>
+        {careers.map((career, index) => (
+          <Accordion
+            expanded={expanded === career}
+            onChange={handleChange(career)}
+            key={index}
+            sx={{ disableGutters: true, elevation: 0 }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+            ></AccordionSummary>
+            <AccordionDetails></AccordionDetails>
+          </Accordion>
+        ))}
+      </div>
       <Typography align="center" variant="h2">
         your result was: {result}
       </Typography>
