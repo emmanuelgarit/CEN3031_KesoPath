@@ -138,10 +138,10 @@ export default function PostQuiz(props) {
 
   return (
     <ContentContainer>
-      <Typography align="center" variant="h2">
+      <Typography align="center" variant="h2" sx={{ paddingTop: ".7em" }}>
         Post Quiz Results
       </Typography>
-      <Typography align="center" variant="h5">
+      <Typography align="center" variant="h5" sx={{ paddingTop: ".3em" }}>
         Your results in order...
       </Typography>
       <Divider sx={{ paddingTop: "1em" }} />
