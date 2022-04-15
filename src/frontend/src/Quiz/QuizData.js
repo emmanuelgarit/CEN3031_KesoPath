@@ -6,7 +6,7 @@ const questions = {
   //math
   0: {
     Question: "I like to solve math problems.",
-    isMult: false,
+    Type: "AgreeDisagree",
     A: "",
     B: "",
     C: "",
@@ -17,7 +17,7 @@ const questions = {
   //science
   1: {
     Question: "I like to solve science problems.",
-    isMult: false,
+    Type: "AgreeDisagree",
     A: "",
     B: "",
     C: "",
@@ -27,7 +27,7 @@ const questions = {
   //Social Studies
   2: {
     Question: "I like to solve history problems.",
-    isMult: false,
+    Type: "AgreeDisagree",
     A: "",
     B: "",
     C: "",
@@ -38,7 +38,7 @@ const questions = {
   //Trade
   3: {
     Question: "I like to solve puzzles.",
-    isMult: false,
+    Type: "AgreeDisagree",
     A: "",
     B: "",
     C: "",
@@ -49,7 +49,7 @@ const questions = {
   //Arts
   4: {
     Question: "I like to draw/paint.",
-    isMult: false,
+    Type: "AgreeDisagree",
     A: "",
     B: "",
     C: "",
@@ -60,7 +60,7 @@ const questions = {
   //Math
   5: {
     Question: "I like to work with numbers.",
-    isMult: false,
+    Type: "AgreeDisagree",
     A: "",
     B: "",
     C: "",
@@ -71,7 +71,7 @@ const questions = {
   //Science
   6: {
     Question: "I like to work with computers.",
-    isMult: false,
+    Type: "AgreeDisagree",
     A: "",
     B: "",
     C: "",
@@ -82,7 +82,7 @@ const questions = {
   //Social Studies
   7: {
     Question: " I like learning about current events.",
-    isMult: false,
+    Type: "AgreeDisagree",
     A: "",
     B: "",
     C: "",
@@ -93,7 +93,7 @@ const questions = {
   //Trade
   8: {
     Question: "I like seeing how parts work together.",
-    isMult: false,
+    Type: "AgreeDisagree",
     A: "",
     B: "",
     C: "",
@@ -104,12 +104,33 @@ const questions = {
   //Arts
   9: {
     Question: " I like playing musical instruments.",
-    isMult: false,
+    Type: "AgreeDisagree",
     A: "",
     B: "",
     C: "",
     D: "",
     picture: image,
+  },
+
+  //Science
+  10: {
+    Question: "What force causes planes to move upward?",
+    Type: "Mult",
+    A: "Thrust",
+    B: "Lift",
+    C: "Gravity",
+    D: "Drag",
+    picture: image2,
+  },
+
+  11: {
+    Question: "I would rather be a:",
+    Type: "IWouldRather",
+    A: "Teacher",
+    B: "Student",
+    C: "",
+    D: "",
+    picture: image3,
   },
 };
 

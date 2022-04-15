@@ -19,6 +19,7 @@ import axios from "axios";
 
 import UserContext from "../UserContext";
 import QuizStepper from "../QuizStepper";
+import { Divider, FormControlLabel, Stack } from "@mui/material";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -45,9 +46,20 @@ export default function QuizComponent() {
 
   //function for the list of buttons that contain the answers.
 
-  function AnswerList(props) {
+  function AgreeDisagree(props) {
     return (
       <Container align="center">
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "68%",
+          }}
+        >
+          <Typography>Strongly Disagree </Typography>
+          <Typography sx={{ marginRight: "2%" }}>Strongly Agree</Typography>
+        </Container>
+
         <Checkbox
           style={checkBoxStyle}
           {...label}
@@ -132,6 +144,154 @@ export default function QuizComponent() {
     );
   }
 
+  function MultChoice(props) {
+    return (
+      <Container align="center">
+        <Stack spacing={2}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                //A
+                style={checkBoxStyle}
+                icon={<RadioButtonUncheckedOutlinedIcon />}
+                checkedIcon={<RadioButtonCheckedOutlinedIcon />}
+                checked={boxOne}
+                onChange={() => {
+                  setBoxOne(true);
+                  setBoxTwo(false);
+                  setBoxThree(false);
+                  setBoxFour(false);
+                  setBoxFive(false);
+                  setIsOneChecked(true);
+                  setCheckedNum(1);
+                }}
+              />
+            }
+            label={questions[currentSlide].A}
+          />
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                //B
+                style={checkBoxStyle}
+                icon={<RadioButtonUncheckedOutlinedIcon />}
+                checkedIcon={<RadioButtonCheckedOutlinedIcon />}
+                checked={boxTwo}
+                onChange={() => {
+                  setBoxOne(false);
+                  setBoxTwo(true);
+                  setBoxThree(false);
+                  setBoxFour(false);
+                  setBoxFive(false);
+                  setIsOneChecked(true);
+                  setCheckedNum(2);
+                }}
+              />
+            }
+            label={questions[currentSlide].B}
+          />
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                //C
+                style={checkBoxStyle}
+                icon={<RadioButtonUncheckedOutlinedIcon />}
+                checkedIcon={<RadioButtonCheckedOutlinedIcon />}
+                checked={boxThree}
+                onChange={() => {
+                  setBoxOne(false);
+                  setBoxTwo(false);
+                  setBoxThree(true);
+                  setBoxFour(false);
+                  setBoxFive(false);
+                  setIsOneChecked(true);
+                  setCheckedNum(3);
+                }}
+              />
+            }
+            label={questions[currentSlide].C}
+          />
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                //D
+                style={checkBoxStyle}
+                icon={<RadioButtonUncheckedOutlinedIcon />}
+                checkedIcon={<RadioButtonCheckedOutlinedIcon />}
+                checked={boxFour}
+                onChange={() => {
+                  setBoxOne(false);
+                  setBoxTwo(false);
+                  setBoxThree(false);
+                  setBoxFour(true);
+                  setBoxFive(false);
+                  setIsOneChecked(true);
+                  setCheckedNum(4);
+                }}
+              />
+            }
+            label={questions[currentSlide].D}
+          />
+        </Stack>
+      </Container>
+    );
+  }
+
+  function IWouldRather(props) {
+    return (
+      <Container align="center">
+        <Stack spacing={2}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                //A
+                style={checkBoxStyle}
+                icon={<RadioButtonUncheckedOutlinedIcon />}
+                checkedIcon={<RadioButtonCheckedOutlinedIcon />}
+                checked={boxOne}
+                onChange={() => {
+                  setBoxOne(true);
+                  setBoxTwo(false);
+                  setBoxThree(false);
+                  setBoxFour(false);
+                  setBoxFive(false);
+                  setIsOneChecked(true);
+                  setCheckedNum(1);
+                }}
+              />
+            }
+            label={questions[currentSlide].A}
+          />
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                //B
+                style={checkBoxStyle}
+                icon={<RadioButtonUncheckedOutlinedIcon />}
+                checkedIcon={<RadioButtonCheckedOutlinedIcon />}
+                checked={boxTwo}
+                onChange={() => {
+                  setBoxOne(false);
+                  setBoxTwo(true);
+                  setBoxThree(false);
+                  setBoxFour(false);
+                  setBoxFive(false);
+                  setIsOneChecked(true);
+                  setCheckedNum(2);
+                }}
+              />
+            }
+            label={questions[currentSlide].B}
+          />
+        </Stack>
+      </Container>
+    );
+  }
+
   return (
     <Grid>
       <Paper
@@ -161,19 +321,11 @@ export default function QuizComponent() {
           {questions[currentSlide].Question}
         </Typography>
 
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "68%",
-          }}
-          s
-        >
-          <Typography>Strongly Disagree </Typography>
-          <Typography sx={{ marginRight: "2%" }}>Strongly Agree</Typography>
-        </Container>
+        {questions[currentSlide].Type === "AgreeDisagree" && <AgreeDisagree />}
 
-        <AnswerList />
+        {questions[currentSlide].Type === "Mult" && <MultChoice />}
+
+        {questions[currentSlide].Type === "IWouldRather" && <IWouldRather />}
 
         <Container
           align="center"
@@ -201,7 +353,7 @@ export default function QuizComponent() {
             Back
           </Button>
 
-          <QuizStepper currentSlide={currentSlide} maxSlide={10} />
+          <QuizStepper currentSlide={currentSlide} maxSlide={12} />
 
           <Button
             endIcon={<ArrowForwardIcon />}
@@ -210,7 +362,7 @@ export default function QuizComponent() {
             size="large"
             onClick={() => {
               setCurrentSlide(currentSlide + 1);
-              if (currentSlide == 9) {
+              if (currentSlide == 11) {
                 navigate("/postquiz");
               }
 

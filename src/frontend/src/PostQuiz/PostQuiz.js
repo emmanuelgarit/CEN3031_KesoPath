@@ -80,7 +80,6 @@ export default function PostQuiz(props) {
     let Mathematics = 0;
 
     //assignment of weights
-
     //question 1 weighting (math)
     Mathematics = Mathematics + (answerList[0] - 3);
     //question 2 weighting (science)
