@@ -1,13 +1,25 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
-import { Button, Box } from "@mui/material";
-import Container from "@mui/material/Container";
-import { useNavigate } from "react-router-dom";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
-import axios from "axios";
-import UserContext from "../UserContext";
 import { useEffect, useState, useRef } from "react";
+
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+
+import UserContext from "../UserContext";
+
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Typography from "@mui/material/Typography";
+import { Button, Box, Container, Divider } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+import careers from "../data/careers";
+
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 
 export default function PostQuiz(props) {
   let navigate = useNavigate();
@@ -17,29 +29,43 @@ export default function PostQuiz(props) {
   }));
 
   const { userData, setUserData } = React.useContext(UserContext);
-  const [result, setResult] = useState("Click to Generate...");
+  const [careerResults, setCareerResults] = useState([]);
 
+  // Call on render
   useEffect(() => {
-    getCareerPath();
+    // If we have a list of careers, generate a result
+    if (careers) {
+      // Generate a result
+      let careerResults = getCareerPath().then((careerResults) => {
+        if (careerResults) {
+          console.log("career resultss: ", careerResults);
+          careerResults = careerResults.sort((a, b) => {
+            return b.weight - a.weight;
+          });
+          // Set the result, and set the list of results to render
+          setCareerResults(careerResults);
+        }
+      });
+    }
   }, []);
 
-  async function getCareerPath() {
-    const userObject = JSON.parse(localStorage.getItem("user"));
-    const fullName = userObject.fullName;
-    const userEmail = userObject.email;
-    let answerList = [];
+  function getCareerPath() {
+    return new Promise((resolve, reject) => {
+      const userObject = JSON.parse(localStorage.getItem("user"));
+      const fullName = userObject.fullName;
+      const userEmail = userObject.email;
+      let answerList = [];
 
-    const email = {
-      email: userEmail,
-    };
-    await axios
-      .post("http://localhost:4000/api/getanswers", email)
-      .then((res) => {
+      const email = {
+        email: userEmail,
+      };
+      axios.post("http://localhost:4000/api/getanswers", email).then((res) => {
         console.log("res.data: ", res.data.answers);
         answerList = res.data.answers;
         console.log("answerList: ", answerList);
+        resolve(generateCareerResult(answerList));
       });
-    return generateCareerResult(answerList);
+    });
   }
 
   //Algorithm for career generation
@@ -54,7 +80,6 @@ export default function PostQuiz(props) {
     let Mathematics = 0;
 
     //assignment of weights
-
     //question 1 weighting (math)
     Mathematics = Mathematics + (answerList[0] - 3);
     //question 2 weighting (science)
@@ -76,6 +101,20 @@ export default function PostQuiz(props) {
     //question 10 weighting (arts)
     Arts = Arts + (answerList[9] - 3);
 
+    console.log("SocialStudies: ", SocialStudies);
+    console.log("Arts: ", Arts);
+    console.log("Science: ", Science);
+    console.log("Trade: ", Trade);
+    console.log("Mathematics: ", Mathematics);
+
+    let results = [
+      { ...careers[0], weight: SocialStudies },
+      { ...careers[1], weight: Arts },
+      { ...careers[2], weight: Science },
+      { ...careers[3], weight: Trade },
+      { ...careers[4], weight: Mathematics },
+    ];
+
     //sets the result based on the weights.
 
     let currenthighest = -100;
@@ -87,38 +126,54 @@ export default function PostQuiz(props) {
         index = i;
       }
     }
-
-    switch (index) {
-      case 0:
-        setResult("Social Studies");
-        break;
-      case 1:
-        setResult("Arts");
-        break;
-      case 2:
-        setResult("Science");
-        break;
-      case 3:
-        setResult("Trades");
-        break;
-      case 4:
-        setResult("Mathematics");
-        break;
-      default:
-        setResult("Failed");
-        break;
-    }
+    return results;
   }
+
+  const [expanded, setExpanded] = React.useState("panel1");
+
+  const handleChange = (panel) => (_, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
   return (
     <ContentContainer>
-      <Typography align="center" variant="h1">
+      <Typography align="center" variant="h2" sx={{ paddingTop: ".7em" }}>
         Post Quiz Results
       </Typography>
-      <Typography align="center" variant="h2">
-        your result was: {result}
+      <Typography align="center" variant="h5" sx={{ paddingTop: ".3em" }}>
+        Your results in order...
       </Typography>
-      <Typography align="center">
+      <Divider sx={{ paddingTop: "1em" }} />
+      <Container>
+        {careerResults &&
+          careerResults.map((career, index) => (
+            <Accordion
+              expanded={expanded === career}
+              onChange={handleChange(career)}
+              key={index}
+              sx={{ disableGutters: true, elevation: 0 }}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls={`${careers.name}-content`}
+                id={`${careers.name}-header`}
+              >
+                <Typography variant="h5">
+                  {`${index + 1} - ${career.name}`}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <ReactMarkdown
+                  rehypePlugins={[rehypeRaw]}
+                  id="markdown"
+                  children={career.info}
+                />
+              </AccordionDetails>
+            </Accordion>
+          ))}
+      </Container>
+      <Divider />
+      <Typography align="center" sx={{ paddingTop: "5em" }}>
         <Button
           align="center"
           variant="contained"

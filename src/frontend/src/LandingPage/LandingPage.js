@@ -8,9 +8,8 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 
 import UserContext from "../UserContext";
-// button needs like onClick that will navigate to quiz page
-// need folder for the quiz page and a quiz page
-// set up a route for the quiz page
+
+import axios from "axios";
 
 const ContentContainer = styled(Box)(() => ({
   height: "100%",

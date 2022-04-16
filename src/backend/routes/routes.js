@@ -112,4 +112,18 @@ router.post("/getanswers", async (req, res) => {
   }
 });
 
+// not working in frontend
+router.post("/resetanswers", async (req, res) => {
+  const { email } = req.body;
+  try {
+    const updatedUser = await signUp.findOneAndUpdate(
+      { email },
+      { $set: { answers: [] } }
+    );
+    res.send({ user: updatedUser });
+  } catch (error) {
+    res.status(500).send({ message: "something went wrong" });
+  }
+});
+
 module.exports = router;
