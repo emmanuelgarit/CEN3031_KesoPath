@@ -5,7 +5,7 @@ import image3 from "./cityImage.jpg";
 const questions = {
   //math
   0: {
-    Question: "I like to solve math problems.",
+    Question: "I enjoy working with my hands, either outside or inside.",
     Type: "AgreeDisagree",
     A: "",
     B: "",
@@ -16,20 +16,21 @@ const questions = {
 
   //science
   1: {
-    Question: "I like to solve science problems.",
-    Type: "AgreeDisagree",
-    A: "",
-    B: "",
-    C: "",
-    D: "",
+    Question:
+      "A racing competition has 6 teams of 4 people and are planning on ordering pizza for lunch. The organizers want each person to have at least 2 slices and each box contains 8. What is the least number of pizza boxes the organizers can order so that each person gets at least 2 slices?",
+    Type: "Mult",
+    A: "3",
+    B: "10",
+    C: "6",
+    D: "12",
     picture: image2,
   },
   //Social Studies
   2: {
-    Question: "I like to solve history problems.",
-    Type: "AgreeDisagree",
-    A: "",
-    B: "",
+    Question: "I would rather:",
+    Type: "IWouldRather",
+    A: "Participate in a science fair.",
+    B: "Participate in a debate on current events.",
     C: "",
     D: "",
     picture: image3,
@@ -37,7 +38,8 @@ const questions = {
 
   //Trade
   3: {
-    Question: "I like to solve puzzles.",
+    Question:
+      "The city-state Athens of ancient Greece was the first known democracy in recorded history. How likely are you to enjoy learning about what led them to this form of government and how it worked out for them?",
     Type: "AgreeDisagree",
     A: "",
     B: "",
@@ -48,7 +50,7 @@ const questions = {
 
   //Arts
   4: {
-    Question: "I like to draw/paint.",
+    Question: "I am a creative person.",
     Type: "AgreeDisagree",
     A: "",
     B: "",
@@ -59,7 +61,8 @@ const questions = {
 
   //Math
   5: {
-    Question: "I like to work with numbers.",
+    Question:
+      "Boston Dynamics has robots that mimic human movements and are capable of parkour. How likely are you to enjoy working in a team to make robots that do cool things?",
     Type: "AgreeDisagree",
     A: "",
     B: "",
@@ -70,10 +73,11 @@ const questions = {
 
   //Science
   6: {
-    Question: "I like to work with computers.",
-    Type: "AgreeDisagree",
-    A: "",
-    B: "",
+    Question:
+      "Which of the following is the place where you would enjoy yourself the most?",
+    Type: "IWouldRather",
+    A: "Studying my favorite subjects in the library.",
+    B: "Working on an arts & crafts project with my friends.",
     C: "",
     D: "",
     picture: image,
@@ -81,7 +85,41 @@ const questions = {
 
   //Social Studies
   7: {
-    Question: " I like learning about current events.",
+    Question: "I would rather:",
+    Type: "IWouldRather",
+    A: "Solve math problems.",
+    B: "Write a story.",
+    C: "",
+    D: "",
+    picture: image2,
+  },
+
+  //Trade
+  8: {
+    Question: "If one boils water it will convert into ____.",
+    Type: "Mult",
+    A: "Mist",
+    B: "Steam",
+    C: "Clouds",
+    D: "Snow",
+    picture: image3,
+  },
+
+  //Arts
+  9: {
+    Question: "If you had to be a teacher, what subject would you teach?",
+    Type: "Mult",
+    A: "Math",
+    B: "Social Studies",
+    C: "Computer Science",
+    D: "Science",
+    picture: image,
+  },
+
+  //Science
+  10: {
+    Question:
+      "I like expressing myself through drawing, painting, playing music, or any other related activity.",
     Type: "AgreeDisagree",
     A: "",
     B: "",
@@ -90,9 +128,8 @@ const questions = {
     picture: image2,
   },
 
-  //Trade
-  8: {
-    Question: "I like seeing how parts work together.",
+  11: {
+    Question: "I enjoy solving puzzles.",
     Type: "AgreeDisagree",
     A: "",
     B: "",
@@ -101,33 +138,151 @@ const questions = {
     picture: image3,
   },
 
-  //Arts
-  9: {
-    Question: " I like playing musical instruments.",
+  12: {
+    Question: "How much time do you see yourself spending in higher education?",
+    Type: "Mult",
+    A: "No time.",
+    B: "2 years.",
+    C: "4 years.",
+    D: "More than 4 years.",
+    picture: image3,
+  },
+
+  13: {
+    Question: "I would enjoy participating in a math competition.",
     Type: "AgreeDisagree",
     A: "",
     B: "",
     C: "",
     D: "",
-    picture: image,
+    picture: image3,
   },
 
-  //Science
-  10: {
-    Question: "What force causes planes to move upward?",
+  14: {
+    Question: "Which system of the body controls the senses?",
     Type: "Mult",
-    A: "Thrust",
-    B: "Lift",
-    C: "Gravity",
-    D: "Drag",
-    picture: image2,
+    A: "Circulatory system",
+    B: "Digestive system",
+    C: "Nervous system",
+    D: "Skeletal System",
+    picture: image3,
   },
 
-  11: {
-    Question: "I would rather be a:",
+  15: {
+    Question: "I would rather:",
     Type: "IWouldRather",
-    A: "Teacher",
-    B: "Student",
+    A: "Implement an algorithm",
+    B: "Learn about history.",
+    C: "",
+    D: "",
+    picture: image3,
+  },
+
+  16: {
+    Question: "What is the name of this note (note in image)",
+    Type: "Mult",
+    A: "Note1",
+    B: "Note2",
+    C: "Note3",
+    D: "Note4",
+    picture: image3,
+  },
+
+  17: {
+    Question: "I would rather:",
+    Type: "IWouldRather",
+    A: "Work on a computer.",
+    B: "Work outside.",
+    C: "",
+    D: "",
+    picture: image3,
+  },
+
+  18: {
+    Question: "",
+    Type: "",
+    A: "",
+    B: "",
+    C: "",
+    D: "",
+    picture: image3,
+  },
+
+  19: {
+    Question: "",
+    Type: "",
+    A: "",
+    B: "",
+    C: "",
+    D: "",
+    picture: image3,
+  },
+
+  20: {
+    Question: "",
+    Type: "",
+    A: "",
+    B: "",
+    C: "",
+    D: "",
+    picture: image3,
+  },
+
+  21: {
+    Question: "",
+    Type: "",
+    A: "",
+    B: "",
+    C: "",
+    D: "",
+    picture: image3,
+  },
+
+  22: {
+    Question: "",
+    Type: "",
+    A: "",
+    B: "",
+    C: "",
+    D: "",
+    picture: image3,
+  },
+
+  23: {
+    Question: "",
+    Type: "",
+    A: "",
+    B: "",
+    C: "",
+    D: "",
+    picture: image3,
+  },
+
+  24: {
+    Question: "",
+    Type: "",
+    A: "",
+    B: "",
+    C: "",
+    D: "",
+    picture: image3,
+  },
+
+  25: {
+    Question: "",
+    Type: "",
+    A: "",
+    B: "",
+    C: "",
+    D: "",
+    picture: image3,
+  },
+
+  26: {
+    Question: "",
+    Type: "",
+    A: "",
+    B: "",
     C: "",
     D: "",
     picture: image3,

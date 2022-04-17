@@ -25,7 +25,7 @@ const SocialStudies = `
 
     * Judges provide instructions to juries prior to their deliberations and in the case of bench trials, judges must decide the facts of the case and make a ruling. Additionally, judges are also responsible for sentencing convicted criminal defendants. Most cases are heard and settled by a jury.
 
-More info on careers related social studies: [https://www.pdx.edu/careers/what-can-i-do-degree-social-science](https://www.pdx.edu/careers/what-can-i-do-degree-social-science)
+More info on careers related to social studies: [https://www.pdx.edu/careers/what-can-i-do-degree-social-science](https://www.pdx.edu/careers/what-can-i-do-degree-social-science)
 
 `;
 
