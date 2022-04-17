@@ -1,4 +1,7 @@
 const Mathametics = `
+##### Description
+* Mathematics is the science and study of quality, structure, space, and change. Mathematicians seek out patterns, formulate new conjectures, and establish truth by rigorous deduction from appropriately chosen axioms and definitions.
+
 ##### Top Career Paths
 
 * Data/Research Analyst (Median Salary: $83,000)
