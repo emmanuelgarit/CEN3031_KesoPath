@@ -1,4 +1,7 @@
 const Trades = `
+##### Description
+* A trade job generally refers to any job whose duties require advanced training and skills gained through means other than a bachelor’s degree. For example, many jobs in the construction industry, such as plumber or electrician, require you to have significant experience and training before you can work. Experience and training can be gained through on-the-job experience or formal education in the form of an apprenticeship or completing a vocational school training program. Although many skilled labor jobs require manual work, not all trade jobs require significant physical labor. Examples of these include being a pilot, a real estate broker, or dental technician.
+
 ##### Top Career Paths
 
 * Construction Manager (Median Salary: $97,000)

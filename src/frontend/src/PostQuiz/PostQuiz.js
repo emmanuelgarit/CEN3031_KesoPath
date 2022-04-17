@@ -68,6 +68,24 @@ export default function PostQuiz(props) {
     });
   }
 
+  function generateWeight(a, b, c, d, e, index, answerList) {
+    let value = answerList[index];
+    switch (value) {
+      case 1:
+        return a;
+      case 2:
+        return b;
+      case 3:
+        return c;
+      case 4:
+        return d;
+      case 5:
+        return e;
+      default:
+        return 0;
+    }
+  }
+
   //Algorithm for career generation
   function generateCareerResult(answerList) {
     //we are assuming getCareerPath has already been called.
@@ -78,28 +96,31 @@ export default function PostQuiz(props) {
     let Science = 0;
     let Trade = 0;
     let Mathematics = 0;
+    let Technology = 0;
 
     //assignment of weights
     //question 1 weighting (math)
-    Mathematics = Mathematics + (answerList[0] - 3);
+    Mathematics = Mathematics + generateWeight(-2, 1, 0, 1, 2, 0, answerList);
     //question 2 weighting (science)
-    Science = Science + (answerList[1] - 3);
+    Science = Science + generateWeight(-2, 1, 0, 1, 2, 0, answerList);
     //question 3 weighting (social studies)
-    SocialStudies = SocialStudies + (answerList[2] - 3);
+    SocialStudies =
+      SocialStudies + generateWeight(-2, 1, 0, 1, 2, 0, answerList);
     //question 4 weighting (trade)
-    Trade = Trade + (answerList[3] - 3);
+    Trade = Trade + generateWeight(-2, 1, 0, 1, 2, 0, answerList);
     //question 5 weighting (arts)
-    Arts = Arts + (answerList[4] - 3);
+    Arts = Arts + generateWeight(-2, 1, 0, 1, 2, 0, answerList);
     //question 6 weighting (math)
-    Mathematics = answerList[5] - 3;
+    Mathematics = Mathematics + generateWeight(-2, 1, 0, 1, 2, 0, answerList);
     //question 7 weighting (science)
-    Science = Science + (answerList[6] - 3);
+    Science = Science + generateWeight(-2, 1, 0, 1, 2, 0, answerList);
     //question 8 weighting (social studies)
-    SocialStudies = SocialStudies + (answerList[7] - 3);
+    SocialStudies =
+      SocialStudies + generateWeight(-2, 1, 0, 1, 2, 0, answerList);
     //question 9 weighting (trade)
-    Trade = Trade + (answerList[8] - 3);
+    Trade = Trade + generateWeight(-2, 1, 0, 1, 2, 0, answerList);
     //question 10 weighting (arts)
-    Arts = Arts + (answerList[9] - 3);
+    Arts = Arts + generateWeight(-2, 1, 0, 1, 2, 0, answerList);
 
     console.log("SocialStudies: ", SocialStudies);
     console.log("Arts: ", Arts);
@@ -113,6 +134,7 @@ export default function PostQuiz(props) {
       { ...careers[2], weight: Science },
       { ...careers[3], weight: Trade },
       { ...careers[4], weight: Mathematics },
+      { ...careers[5], weight: Technology },
     ];
 
     //sets the result based on the weights.
