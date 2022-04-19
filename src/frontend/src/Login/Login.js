@@ -14,11 +14,13 @@ import UserContext from "../UserContext";
 
 export default function Login() {
   let URL;
+  console.log(process.env.NODE_ENV);
   if (process.env.NODE_ENV === "development") {
     URL = "http://localhost:4000/";
   } else {
     URL = "";
   }
+  //
 
   // maybe conditional rendering makes more sense than a blank typography but this works for now
   const [submitErrorMessage, setSubmitErrorMessage] = React.useState("");
