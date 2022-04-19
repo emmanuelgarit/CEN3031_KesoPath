@@ -24,6 +24,12 @@ import { Divider, FormControlLabel, Stack } from "@mui/material";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function QuizComponent() {
+  let URL;
+  if (process.env.NODE_ENV === "development") {
+    URL = "http://localhost:4000/";
+  } else {
+    URL = "";
+  }
   let navigate = useNavigate();
 
   const { userData, setUserData } = React.useContext(UserContext);
@@ -374,11 +380,9 @@ export default function QuizComponent() {
                 currentSlide,
                 answer: checkedNum,
               };
-              axios
-                .post("http://localhost:4000/api/sendanswer", answer)
-                .then((res) => {
-                  console.log(res);
-                });
+              axios.post(`${URL}/api/sendanswer`, answer).then((res) => {
+                console.log(res);
+              });
 
               // update variable here
               setBoxOne(false);
