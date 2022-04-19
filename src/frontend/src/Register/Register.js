@@ -42,7 +42,7 @@ export default function Register() {
       password: values.password,
     };
     axios
-      .post(`${URL}api/signup`, registered)
+      .post(`${URL}/api/signup`, registered)
       .then((res) => {
         setUserData({
           fullName: res.data.newSignUp.fullName,
