@@ -9,8 +9,6 @@ import { styled } from "@mui/material/styles";
 
 import UserContext from "../UserContext";
 
-import axios from "axios";
-
 const ContentContainer = styled(Box)(() => ({
   height: "100%",
   flexDirection: "row",

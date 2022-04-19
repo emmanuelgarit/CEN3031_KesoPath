@@ -1,4 +1,8 @@
 const SocialStudies = `
+##### Description
+
+* Social studies can also be referred to as social sciences. It's a field which deals with human behavior, relationships, resources, and institutions. Specific topics within social studies that are studied in school coursework include geography, anthropology, economics, history, sociology, political science, and civics.
+
 ##### Top Career Paths
 
 * Political Scientist (Median Salary: $98,000) 
