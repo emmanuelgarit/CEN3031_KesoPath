@@ -1,4 +1,7 @@
 const SocialStudies = `
+##### Description
+* Social studies is the integrated study of the social sciences and humanities to promote civic competence. Within the school program, social studies provides coordinated, systematic study drawing upon such disciplines as anthropology, archaeology, economics, geography, history, law, philosophy, political science, psychology, religion, and sociology, as well as appropriate content from the humanities, mathematics, and natural sciences.
+* Description from https://www.socialstudies.org/about/about
 ##### Top Career Paths
 
 * Political Scientist (Median Salary: $98,000) 

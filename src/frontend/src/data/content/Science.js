@@ -1,7 +1,7 @@
 const Science = `
 ##### Description
-
-
+* Science is the pursuit and application of knowledge and understanding of the natural and social world following a systematic methodology based on evidence.
+* Description from https://sciencecouncil.org/about-science/our-definition-of-science/#:~:text=Science%20is%20the%20pursuit%20and,Evidence
 ##### Top Career Paths
 
 * Epidemiologist/Medical Scientist (Median Salary: $75,000)

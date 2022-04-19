@@ -1,4 +1,7 @@
 const Arts = `
+##### Description
+* Art is generally understood as any activity or product done by people with a communicative or aesthetic purpose—something that expresses an idea, an emotion or, more generally, a world view. It is a component of culture, reflecting economic and social substrates in its design.
+* Description from https://www.smashingmagazine.com/2010/07/what-do-we-really-mean-by-art/
 ##### Top Career Paths
 
 * Professional Artist (Median Salary: $69,000)
