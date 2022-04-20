@@ -23,6 +23,13 @@ import rehypeRaw from "rehype-raw";
 import Trades from "../data/content/Trades";
 
 export default function PostQuiz(props) {
+  let URL;
+  if (process.env.NODE_ENV === "development") {
+    URL = "http://localhost:4000/";
+  } else {
+    URL = "";
+  }
+
   let navigate = useNavigate();
   const ContentContainer = styled(Box)(() => ({
     height: "100%",
@@ -60,7 +67,7 @@ export default function PostQuiz(props) {
       const email = {
         email: userEmail,
       };
-      axios.post("http://localhost:4000/api/getanswers", email).then((res) => {
+      axios.post(`${URL}/api/getanswers`, email).then((res) => {
         console.log("res.data: ", res.data.answers);
         answerList = res.data.answers;
         console.log("answerList: ", answerList);

@@ -13,6 +13,15 @@ import axios from "axios";
 import UserContext from "../UserContext";
 
 export default function Login() {
+  let URL;
+  console.log(process.env.NODE_ENV);
+  if (process.env.NODE_ENV === "development") {
+    URL = "http://localhost:4000/";
+  } else {
+    URL = "";
+  }
+  //
+
   // maybe conditional rendering makes more sense than a blank typography but this works for now
   const [submitErrorMessage, setSubmitErrorMessage] = React.useState("");
   const { userData, setUserData } = React.useContext(UserContext);
@@ -40,7 +49,7 @@ export default function Login() {
       password: values.password,
     };
     axios
-      .post("http://localhost:4000/api/signin", login)
+      .post(`${URL}/api/signin`, login)
       .then((res) => {
         setUserData({
           fullName: res.data.user.fullName,
