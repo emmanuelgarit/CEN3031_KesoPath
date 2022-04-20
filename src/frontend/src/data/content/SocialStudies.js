@@ -1,7 +1,9 @@
 const SocialStudies = `
 ##### Description
 
-* Social studies can also be referred to as social sciences. It's a field which deals with human behavior, relationships, resources, and institutions. Specific topics within social studies that are studied in school coursework include geography, anthropology, economics, history, sociology, political science, and civics.
+* Social studies is the integrated study of the social sciences and humanities to promote civic competence. Within the school program, social studies provides coordinated, systematic study drawing upon such disciplines as anthropology, archaeology, economics, geography, history, law, philosophy, political science, psychology, religion, and sociology, as well as appropriate content from the humanities, mathematics, and natural sciences.
+
+* Description from https://www.socialstudies.org/about/about
 
 ##### Top Career Paths
 

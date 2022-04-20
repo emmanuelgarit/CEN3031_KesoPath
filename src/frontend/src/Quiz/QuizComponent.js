@@ -152,8 +152,8 @@ export default function QuizComponent() {
 
   function MultChoice(props) {
     return (
-      <Container align="center">
-        <Stack spacing={2}>
+      <Container>
+        <Stack>
           <FormControlLabel
             control={
               <Checkbox
@@ -249,7 +249,7 @@ export default function QuizComponent() {
   function IWouldRather(props) {
     return (
       <Container align="center">
-        <Stack spacing={2}>
+        <Stack>
           <FormControlLabel
             control={
               <Checkbox
@@ -359,7 +359,7 @@ export default function QuizComponent() {
             Back
           </Button>
 
-          <QuizStepper currentSlide={currentSlide} maxSlide={12} />
+          <QuizStepper currentSlide={currentSlide} maxSlide={30} />
 
           <Button
             endIcon={<ArrowForwardIcon />}
@@ -368,7 +368,7 @@ export default function QuizComponent() {
             size="large"
             onClick={() => {
               setCurrentSlide(currentSlide + 1);
-              if (currentSlide == 11) {
+              if (currentSlide == 29) {
                 navigate("/postquiz");
               }
 

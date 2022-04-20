@@ -1,6 +1,9 @@
 const Mathametics = `
 ##### Description
+
 * Mathematics is the science and study of quality, structure, space, and change. Mathematicians seek out patterns, formulate new conjectures, and establish truth by rigorous deduction from appropriately chosen axioms and definitions.
+
+* Description from https://www.tntech.edu/cas/math/what-is-mathematics.php#:~:text=Mathematics%20is%20the%20science%20and,appropriately%20chosen%20axioms%20and%20definitions.
 
 ##### Top Career Paths
 

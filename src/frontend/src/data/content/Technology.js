@@ -1,8 +1,7 @@
 const Technology = `
 ##### Description
-
-* The 
-
+* Technology can be most broadly defined as the entities, both material and immaterial, created by the application of mental and physical effort in order to achieve some value. In this usage, technology refers to tools and machines that may be used to solve real-world problems. 
+* Description from https://en.wikipedia.org/wiki/Technology
 #####  Top Career Paths
 
 * Information Security Analyst (Median Salary: $103,590) 
@@ -11,7 +10,7 @@ const Technology = `
 
 * Software Developer (Median Salary: $110,140)
 
-    * Software developers work with developers to design algorithms and flowcharts. Produce clean, efficient code based on specifications. Integrate software components and third-party programs. Verify and deploy programs and systems. Troubleshoot, debug and upgrade existing software.
+    * Software developers invent the technologies we sometimes take for granted. For instance, that app that rings, sings or buzzes you out of a deep sleep every morning? A software developer helped design that. And when you roll into the office and turn on your computer, clicking and scrolling through social media, music and your personal calendar – software developers had a big hand in shaping those, too.
 
 * Data Scientist (Median Salary: $98,230)
 
