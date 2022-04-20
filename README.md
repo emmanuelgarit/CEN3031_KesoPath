@@ -12,7 +12,7 @@ This project serves 2 main purposes. The first purpose is to give students direc
 
 * cd src/backend
 * npm install
-* Create .env file in backend folder with our mongoDB connection string (request access from us)
+* Create .env file in backend folder with our mongoDB connection string (request connection string from us)
 * npm run start
 
 # Technology Used
