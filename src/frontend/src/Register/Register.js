@@ -13,7 +13,7 @@ import UserContext from "../UserContext";
 export default function Register() {
   let URL;
   if (process.env.NODE_ENV === "development") {
-    URL = "http://localhost:4000/";
+    URL = "http://localhost:4000";
   } else {
     URL = "";
   }

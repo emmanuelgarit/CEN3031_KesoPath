@@ -25,7 +25,7 @@ import Trades from "../data/content/Trades";
 export default function PostQuiz(props) {
   let URL;
   if (process.env.NODE_ENV === "development") {
-    URL = "http://localhost:4000/";
+    URL = "http://localhost:4000";
   } else {
     URL = "";
   }
@@ -114,85 +114,83 @@ export default function PostQuiz(props) {
     //question 2
     Science = Science + generateWeight(2, 0, 0, 0, 0, 2, answerList);
     //question 3
-    SocialStudies = SocialStudies + generateWeight(-2, 1, 0, 1, 2, 3, answerList);
+    SocialStudies =
+      SocialStudies + generateWeight(-2, 1, 0, 1, 2, 3, answerList);
     //question 4
     Arts = Arts + generateWeight(2, 0, 0, 0, 0, 4, answerList);
     //question 5
     Technology = Technology + generateWeight(2, 0, 0, 0, 0, 5, answerList);
     //question 6
-    Trade = Trade + generateWeight(0,0,0,0,0, 6, answerList);
+    Trade = Trade + generateWeight(0, 0, 0, 0, 0, 6, answerList);
     //question 7
     if (answerList[7] == 1) {
       Mathematics = Mathematics + generateWeight(2, 0, 0, 0, 0, 7, answerList);
-    }
-    else {
+    } else {
       Arts = Arts + generateWeight(0, 2, 0, 0, 0, 7, answerList);
     }
     //question 8
-    Science = Science + generateWeight(0,2,0,0,0, 8, answerList);
+    Science = Science + generateWeight(0, 2, 0, 0, 0, 8, answerList);
     //question 9
     if (answerList[9] == 1) {
-      Mathematics = Mathematics + generateWeight(2,0,0,0,0,9, answerList);
-    }
-    else if (answerList[9] == 2) {
-      SocialStudies = SocialStudies + generateWeight(0,2,0,0,0,9, answerList);
-    }
-    else if (answerList[9] == 3) {
-      Technology = Technology +  generateWeight(0,0,2,0,0,9, answerList);
-    }
-    else if (answerList[9] == 4) {
-      Science = Science + generateWeight(0,0,0,2,0,9, answerList);
+      Mathematics = Mathematics + generateWeight(2, 0, 0, 0, 0, 9, answerList);
+    } else if (answerList[9] == 2) {
+      SocialStudies =
+        SocialStudies + generateWeight(0, 2, 0, 0, 0, 9, answerList);
+    } else if (answerList[9] == 3) {
+      Technology = Technology + generateWeight(0, 0, 2, 0, 0, 9, answerList);
+    } else if (answerList[9] == 4) {
+      Science = Science + generateWeight(0, 0, 0, 2, 0, 9, answerList);
     }
     //question 10
-    Arts = Arts +  generateWeight(-2,1,0,1,2, 10, answerList);
+    Arts = Arts + generateWeight(-2, 1, 0, 1, 2, 10, answerList);
     //question 11
-    Technology = Technology + generateWeight(-2,1,0,1,2, 11, answerList);
+    Technology = Technology + generateWeight(-2, 1, 0, 1, 2, 11, answerList);
     //question 12
-    Trade = Trade +  generateWeight(2,1,0,-1,-2, 12, answerList);
+    Trade = Trade + generateWeight(2, 1, 0, -1, -2, 12, answerList);
     //question 13
-    Mathematics = Mathematics + generateWeight(-2,1,0,1,2, 13, answerList);
+    Mathematics = Mathematics + generateWeight(-2, 1, 0, 1, 2, 13, answerList);
     //question 14
-    Science = Science + generateWeight(0,0,2,0,0, 14, answerList);
+    Science = Science + generateWeight(0, 0, 2, 0, 0, 14, answerList);
     //question 15
     if (answerList[15] == 1) {
-      Mathematics = Mathematics + generateWeight(2,0,0,0,0, 15, answerList);
+      Mathematics = Mathematics + generateWeight(2, 0, 0, 0, 0, 15, answerList);
+    } else {
+      SocialStudies =
+        SocialStudies + generateWeight(0, 2, 0, 0, 0, 15, answerList);
     }
-    else {
-      SocialStudies = SocialStudies + generateWeight(0,2,0,0,0, 15, answerList);
-    }
-    //question 16 
-    Arts = Arts + generateWeight(2,0,0,0,0, 16, answerList);
+    //question 16
+    Arts = Arts + generateWeight(2, 0, 0, 0, 0, 16, answerList);
     //question 17
-    Technology = Technology + generateWeight(2,-1,0,0,0, 17, answerList);
+    Technology = Technology + generateWeight(2, -1, 0, 0, 0, 17, answerList);
     //question 18
-    Trade = Trade + generateWeight(-2,1,0,1,2, 18, answerList);
+    Trade = Trade + generateWeight(-2, 1, 0, 1, 2, 18, answerList);
     //question 19
-    Mathematics = Mathematics + generateWeight(-2,1,0,1,2, 19, answerList);
+    Mathematics = Mathematics + generateWeight(-2, 1, 0, 1, 2, 19, answerList);
     //question 20
-    Science = Science + generateWeight(-2,1,0,1,2, 20, answerList);
+    Science = Science + generateWeight(-2, 1, 0, 1, 2, 20, answerList);
     //question 21
-    SocialStudies = SocialStudies + generateWeight(-2,1,0,1,2, 21, answerList);
+    SocialStudies =
+      SocialStudies + generateWeight(-2, 1, 0, 1, 2, 21, answerList);
     //question 22
-    Arts = Arts + generateWeight(0,2,0,0,0, 22, answerList);
+    Arts = Arts + generateWeight(0, 2, 0, 0, 0, 22, answerList);
     //question 23
-    Technology = Technology + generateWeight(2,0,0,0,0, 23, answerList);
+    Technology = Technology + generateWeight(2, 0, 0, 0, 0, 23, answerList);
     //question 24
-    Trade = Trade + generateWeight(2,-2,0,0,0, 24, answerList);
+    Trade = Trade + generateWeight(2, -2, 0, 0, 0, 24, answerList);
     //question 25
-    Science = Science + generateWeight(2,0,0,0,0, 25, answerList);
+    Science = Science + generateWeight(2, 0, 0, 0, 0, 25, answerList);
     //question 26
-    SocialStudies = SocialStudies + generateWeight(-2, -1,2,-1,0, 26, answerList);
+    SocialStudies =
+      SocialStudies + generateWeight(-2, -1, 2, -1, 0, 26, answerList);
     //question 27
-    Arts = Arts + generateWeight(2,0,0,0,0, 27, answerList);
+    Arts = Arts + generateWeight(2, 0, 0, 0, 0, 27, answerList);
     //question 28
-    Technology = Technology + generateWeight(2,0,0,0,0, 28, answerList);
+    Technology = Technology + generateWeight(2, 0, 0, 0, 0, 28, answerList);
     //question 29
-    Trade = Trade + generateWeight(-2,1,2,-1,0, 29, answerList);
+    Trade = Trade + generateWeight(-2, 1, 2, -1, 0, 29, answerList);
     //question 30
-    SocialStudies = SocialStudies + generateWeight(2,0,0,0,0,30,answerList);
-  
-    
-
+    SocialStudies =
+      SocialStudies + generateWeight(2, 0, 0, 0, 0, 30, answerList);
 
     console.log("SocialStudies: ", SocialStudies);
     console.log("Arts: ", Arts);

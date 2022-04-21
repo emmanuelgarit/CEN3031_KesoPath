@@ -16,7 +16,7 @@ export default function Login() {
   let URL;
   console.log(process.env.NODE_ENV);
   if (process.env.NODE_ENV === "development") {
-    URL = "http://localhost:4000/";
+    URL = "http://localhost:4000";
   } else {
     URL = "";
   }

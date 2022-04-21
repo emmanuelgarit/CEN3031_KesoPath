@@ -26,7 +26,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 export default function QuizComponent() {
   let URL;
   if (process.env.NODE_ENV === "development") {
-    URL = "http://localhost:4000/";
+    URL = "http://localhost:4000";
   } else {
     URL = "";
   }
