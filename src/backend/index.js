@@ -14,7 +14,7 @@ mongoose.connect(process.env.DATABASE_ACCESS, () => {
 //init routes as middleware
 app.use(express.json());
 app.use(cors());
-app.use("/api", routesUrls);
+app.use("api", routesUrls);
 app.listen(4000, () => console.log("server is running"));
 
 module.exports = app;
